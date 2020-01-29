@@ -1,0 +1,34 @@
+spring:
+  # Настройка для базы H2
+  h2:
+    console:
+      enabled: true
+      path: /h2
+    #  spring.hibernate.hbm2ddl.auto=create-drop
+    dataSource:
+      url: jdbc:h2:mem:testdb
+      driverClassName: org.h2.Driver
+      username: sa
+      password:
+    # Hibernate ddl auto (create, create-drop, validate, update)
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.H2Dialect
+      #        generate_statistics: true
+  jpa:
+    # show SQL statements in console.
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  servlet:
+    context-path: /api
+
+logging:
+  level:
+    #    org.hibernate.SQL: debug
+    ru.perm.v: debug
+
+
