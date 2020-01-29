@@ -5,16 +5,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.perm.v.rent.dto.SimpleDTO;
-import ru.perm.v.rent.model.Status;
+import ru.perm.v.rent.model.ModelCar;
 
 @RestController
-@RequestMapping("/status")
-public class StatusCtrl extends ACtrl<Status, Long> {
+@RequestMapping("/modelcar")
+public class ModelCarCtrl extends ACtrl<ModelCar, Long> {
 
 	@PutMapping
-	public Status create(@RequestBody SimpleDTO dto) {
+	public ModelCar create(@RequestBody SimpleDTO dto) {
 		return service.getRepository()
-				.save(new Status(dto.getName()));
+				.save(new ModelCar(dto.getName()));
 	}
 
 }

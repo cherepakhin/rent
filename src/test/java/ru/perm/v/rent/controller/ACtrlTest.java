@@ -20,7 +20,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -34,7 +33,7 @@ import ru.perm.v.rent.service.StatusService;
 @RunWith(SpringRunner.class)
 @WebMvcTest(StatusCtrl.class)
 @ActiveProfiles("test")
-public class StatusCtrlTest {
+public class ACtrlTest {
 
 	private final static String NAME = "NAME";
 	private final static Long ID = 2L;
@@ -65,16 +64,15 @@ public class StatusCtrlTest {
 	public void getAll() throws Exception {
 		ArrayList<Status> statuses = new ArrayList<>();
 		statuses.add(STATUS_TEST);
-		given(this.statusService.getRepository().findAll(Sort.by(
-				"name")))
+		given(this.statusService.getRepository().findAll())
 				.willReturn(statuses);
 
 		this.mockMvc.perform(get("/status"))
 				.andDo(print())
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.statuses", hasSize(1)))
-				.andExpect(jsonPath("$.statuses[0].name", is(NAME)))
-				.andExpect(jsonPath("$.statuses[0].id", is(ID.intValue())))
+				.andExpect(jsonPath("$", hasSize(1)))
+				.andExpect(jsonPath("$[0].name", is(NAME)))
+				.andExpect(jsonPath("$[0].id", is(ID.intValue())))
 				.andReturn();
 	}
 
@@ -110,6 +108,19 @@ public class StatusCtrlTest {
 						.content(requestJson)
 				)
 				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(jsonPath("$.name").value(NAME))
+		;
+	}
+
+	@Test
+	public void getById() throws Exception {
+		given(this.statusService.getRepository().getOne(ID))
+				.willReturn(STATUS_TEST);
+
+		this.mockMvc
+				.perform(get(String.format("/status/%d",ID)))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(jsonPath("$.id").value(ID))
 				.andExpect(jsonPath("$.name").value(NAME))
 		;
 	}
