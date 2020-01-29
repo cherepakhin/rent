@@ -39,20 +39,15 @@ public class ACtrlTest {
 	private final static Long ID = 2L;
 	private final static Status STATUS_TEST = new Status(ID, NAME);
 	private final static ObjectMapper objectMapper = new ObjectMapper();
-	private static MediaType MEDIA_TYPE_JSON;
+	private static MediaType MEDIA_TYPE_JSON =new MediaType(MediaType.APPLICATION_JSON.getType(),
+			MediaType.APPLICATION_JSON.getSubtype(),
+			StandardCharsets.UTF_8);
 	@MockBean
 	StatusService statusService;
 	@MockBean
 	StatusRepository statusRepository;
 	@Autowired
 	private MockMvc mockMvc;
-
-	@BeforeClass
-	public static void beforeAll() {
-		MEDIA_TYPE_JSON = new MediaType(MediaType.APPLICATION_JSON.getType(),
-				MediaType.APPLICATION_JSON.getSubtype(),
-				StandardCharsets.UTF_8);
-	}
 
 	@Before
 	public void setUp() {
