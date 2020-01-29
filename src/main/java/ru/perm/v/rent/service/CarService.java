@@ -30,9 +30,11 @@ public class CarService extends AService<Car, String> {
 	RentalPointRepository rentalPointRepository;
 
 	public Car saveByDTO(CarDTO dto) {
-		Status status = dto.getStatus().isEmpty() ? statusRepository
-				.getOne(StatusConstants.FREE) :
-				statusRepository.getByName(dto.getStatus());
+		Status status =
+				(dto.getStatus().isEmpty() || dto.getStatus().isBlank()) ?
+						statusRepository
+								.getOne(StatusConstants.FREE) :
+						statusRepository.getByName(dto.getStatus());
 		RentalPoint rentalPoint = rentalPointRepository
 				.getByName(dto.getRentalPoint());
 		LOG.info(String.format("DTO rentalPoint: %s", dto.getRentalPoint()));
