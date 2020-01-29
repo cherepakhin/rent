@@ -14,7 +14,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +38,8 @@ public class ACtrlTest {
 	private final static Long ID = 2L;
 	private final static Status STATUS_TEST = new Status(ID, NAME);
 	private final static ObjectMapper objectMapper = new ObjectMapper();
-	private static MediaType MEDIA_TYPE_JSON =new MediaType(MediaType.APPLICATION_JSON.getType(),
+	private static final MediaType MEDIA_TYPE_JSON = new MediaType(
+			MediaType.APPLICATION_JSON.getType(),
 			MediaType.APPLICATION_JSON.getSubtype(),
 			StandardCharsets.UTF_8);
 	@MockBean
@@ -113,7 +113,7 @@ public class ACtrlTest {
 				.willReturn(STATUS_TEST);
 
 		this.mockMvc
-				.perform(get(String.format("/status/%d",ID)))
+				.perform(get(String.format("/status/%d", ID)))
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(jsonPath("$.id").value(ID))
 				.andExpect(jsonPath("$.name").value(NAME))

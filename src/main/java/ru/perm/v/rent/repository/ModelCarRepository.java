@@ -7,4 +7,5 @@ import ru.perm.v.rent.model.ModelCar;
 @Repository
 public interface ModelCarRepository extends JpaRepository<ModelCar, Long> {
 
+	ModelCar getByName(String name);
 }

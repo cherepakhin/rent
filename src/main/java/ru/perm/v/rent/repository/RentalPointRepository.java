@@ -8,4 +8,5 @@ import ru.perm.v.rent.model.RentalPoint;
 public interface RentalPointRepository extends
 		JpaRepository<RentalPoint, Long> {
 
+	RentalPoint getByName(String name);
 }

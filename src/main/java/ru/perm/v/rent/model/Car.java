@@ -16,7 +16,7 @@ public class Car {
 
 	// Арендатор
 	// TODO: Может быть выделить отдельную таблицу
-	private String renter;
+	private String renter = "";
 
 	// Марка
 	@ManyToOne
@@ -69,4 +69,35 @@ public class Car {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof Car)) {
+			return false;
+		}
+
+		Car car = (Car) o;
+
+		return label != null ? label.equals(car.label) : car.label == null;
+	}
+
+	@Override
+	public int hashCode() {
+		return label != null ? label.hashCode() : 0;
+	}
+
+	@Override
+	public String toString() {
+		return "Car{" +
+				"label='" + label + '\'' +
+				", renter='" + renter + '\'' +
+				", model=" + model +
+				", rentalPoint=" + rentalPoint +
+				", status=" + status +
+				'}';
+	}
 }
+

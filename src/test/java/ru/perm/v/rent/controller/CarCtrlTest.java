@@ -1,12 +1,13 @@
 package ru.perm.v.rent.controller;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.nio.charset.StandardCharsets;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,19 +18,14 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import ru.perm.v.rent.dto.SimpleDTO;
-import ru.perm.v.rent.model.ModelCar;
-import ru.perm.v.rent.repository.ModelCarRepository;
-import ru.perm.v.rent.service.ModelCarService;
+import ru.perm.v.rent.model.Car;
+import ru.perm.v.rent.service.CarService;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(ModelCarCtrl.class)
+@WebMvcTest(CarCtrl.class)
 @ActiveProfiles("test")
-public class ModelCarCtrlTest {
+public class CarCtrlTest {
 
-	private final static String NAME = "NAME";
-	private final static Long ID = 2L;
-	private final static ModelCar ENTITY = new ModelCar(ID, NAME);
 	private final static ObjectMapper objectMapper = new ObjectMapper();
 	private static final MediaType MEDIA_TYPE_JSON = new MediaType(
 			MediaType.APPLICATION_JSON.getType(),
@@ -37,34 +33,35 @@ public class ModelCarCtrlTest {
 			StandardCharsets.UTF_8);
 
 	@MockBean
-	ModelCarService service;
-	@MockBean
-	ModelCarRepository repository;
+	CarService service;
+
 	@Autowired
 	private MockMvc mockMvc;
 
-	@Before
-	public void setUp() {
-		given(this.service.getRepository())
-				.willReturn(repository);
-	}
-
 	@Test
 	public void create() throws Exception {
-		SimpleDTO dto = new SimpleDTO(NAME);
-		String requestJson = objectMapper.writeValueAsString(dto);
+		final String LABEL = "a241cc59";
 
-		given(this.service.getRepository().save(new ModelCar(NAME)))
-				.willReturn(ENTITY);
+		String json = String.format("{"
+				+ "\"label\": \"%s\","
+				+ "\"model\": \"\","
+				+ "\"rentalPoint\": \"\""
+				+ "}", LABEL);
+
+		Car car = new Car();
+		car.setLabel(LABEL);
+		given(this.service.saveByDTO(any()))
+				.willReturn(car);
 
 		this.mockMvc
-				.perform(put("/modelcar")
+				.perform(put("/car")
 						.contentType(MEDIA_TYPE_JSON)
-						.content(requestJson)
+						.content(json)
 				)
 				.andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(jsonPath("$.id").value(ID))
-				.andExpect(jsonPath("$.name").value(NAME))
+				.andDo(print())
+				.andExpect(jsonPath("$.label").value(LABEL))
 		;
+
 	}
 }

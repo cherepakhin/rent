@@ -7,4 +7,5 @@ import ru.perm.v.rent.model.Status;
 @Repository
 public interface StatusRepository extends JpaRepository<Status, Long> {
 
+	Status getByName(String name);
 }

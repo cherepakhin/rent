@@ -31,7 +31,7 @@ public class RentalPointCtrlTest {
 	private final static Long ID = 2L;
 	private final static RentalPoint ENTITY = new RentalPoint(ID, NAME);
 	private final static ObjectMapper objectMapper = new ObjectMapper();
-	private static MediaType MEDIA_TYPE_JSON = new MediaType(
+	private static final MediaType MEDIA_TYPE_JSON = new MediaType(
 			MediaType.APPLICATION_JSON.getType(),
 			MediaType.APPLICATION_JSON.getSubtype(),
 			StandardCharsets.UTF_8);
