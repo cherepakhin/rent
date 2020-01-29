@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import ru.perm.v.rent.model.Status;
 
 @Repository
-public interface StatusRepository extends JpaRepository<Status,Long> {
+public interface StatusRepository extends JpaRepository<Status, Long> {
 
 }

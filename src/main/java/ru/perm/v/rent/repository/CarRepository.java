@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import ru.perm.v.rent.model.Car;
 
 @Repository
-public interface CarRepository extends JpaRepository<Car,String> {
+public interface CarRepository extends JpaRepository<Car, String> {
 
 }

@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 public class RentHistory {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	// Арендованный автомобиль
@@ -110,9 +110,9 @@ public class RentHistory {
 				"id=" + id +
 				", car=" + car +
 				", srcPoint=" + srcPoint +
-				", startTime=" + startTime +
-				", dstPoint=" + dstPoint +
-				", endTime=" + endTime +
+//				", startTime=" + startTime +
+//				", dstPoint=" + dstPoint +
+//				", endTime=" + endTime +
 				'}';
 	}
 }

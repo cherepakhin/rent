@@ -12,7 +12,7 @@ import javax.persistence.Id;
 public class Status {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 
@@ -20,6 +20,11 @@ public class Status {
 	}
 
 	public Status(String name) {
+		this.name = name;
+	}
+
+	public Status(Long id, String name) {
+		this.id = id;
 		this.name = name;
 	}
 
