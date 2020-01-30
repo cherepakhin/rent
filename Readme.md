@@ -20,13 +20,12 @@
 - DELETE-запрос __/api/{сервис}/{id}__ - удаление конкретной сущности сервиса
 
 Список сервисов: 
-- [http://localhost:8080/api/car](http://localhost:8080/api/car) - сервис работы с машинами 
-- [http://localhost:8080/api/modelcar](http://localhost:8080/api/modelcar
-) - сервис работы с моделями машин 
-- [http://localhost:8080/api/status](http://localhost:8080/api/status
-) - сервис работы со статусами машин ("Свободна","Арендована") 
-- [http://localhost:8080/api/rentalpoint](http://localhost:8080/api/rentalpoint
-) - сервис работы с пунктами проката
-- [http://localhost:8080/api/rentalhistory](http://localhost:8080/api/rentalhistory
-) - отчеты об аренде 
+- [http://localhost:8080/api/car](http://localhost:8080/api/car) - сервис работы с машинами
+    -  [http://localhost:8080/api/car/free](http://localhost:8080/api/car/free) - список свободных для аренды машин
+    -  [http://localhost:8080/api/car/take](http://localhost:8080/api/car/take) - взять машину в аренду 
+    -  [http://localhost:8080/api/car/return](http://localhost:8080/api/car/return) - сдать машину
+- [http://localhost:8080/api/modelcar](http://localhost:8080/api/modelcar) - сервис работы с моделями машин 
+- [http://localhost:8080/api/status](http://localhost:8080/api/status) - сервис работы со статусами машин ("Свободна","Арендована") 
+- [http://localhost:8080/api/rentalpoint](http://localhost:8080/api/rentalpoint) - сервис работы с пунктами проката
+- [http://localhost:8080/api/rentalhistory](http://localhost:8080/api/rentalhistory) - отчеты об аренде 
 
