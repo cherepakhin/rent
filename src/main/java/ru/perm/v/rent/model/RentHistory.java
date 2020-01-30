@@ -1,8 +1,10 @@
 package ru.perm.v.rent.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.LocalDateTime;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,21 +27,22 @@ public class RentHistory {
 	@ManyToOne
 	private Car car;
 
-	@ApiModelProperty(notes = "Взят из пункта")
+	@ApiModelProperty(notes = "Операция проведена в пункте")
 	@ManyToOne
-	private RentalPoint srcPoint;
+	private RentalPoint rentalPoint;
 
-	@ApiModelProperty(notes = "Время выдачи машины")
-	private LocalDateTime startTime = LocalDateTime.now();
-
-	// Может быть null. Означает что машина в аренде
-	@ApiModelProperty(notes = "Принят в пукте")
+	@ApiModelProperty(notes = "Новый статус")
 	@ManyToOne
-	private RentalPoint dstPoint;
+	private Status newStatus;
 
-	// Может быть null. Означает что машина в аренде
-	@ApiModelProperty(notes = "Время принятия машины от арендатора")
-	private LocalDateTime endTime;
+	@ApiModelProperty(notes = "Время события")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private LocalDateTime eventTime = LocalDateTime.now();
+
+	@ApiModelProperty(notes = "Арендатор")
+	@Column(columnDefinition = "varchar(255) default '-'")
+	// TODO: Может быть выделить отдельную таблицу
+	private String renter = "";
 
 	public Long getId() {
 		return id;
@@ -57,36 +60,36 @@ public class RentHistory {
 		this.car = car;
 	}
 
-	public RentalPoint getSrcPoint() {
-		return srcPoint;
+	public RentalPoint getRentalPoint() {
+		return rentalPoint;
 	}
 
-	public void setSrcPoint(RentalPoint srcPoint) {
-		this.srcPoint = srcPoint;
+	public void setRentalPoint(RentalPoint rentalPoint) {
+		this.rentalPoint = rentalPoint;
 	}
 
-	public LocalDateTime getStartTime() {
-		return startTime;
+	public Status getNewStatus() {
+		return newStatus;
 	}
 
-	public void setStartTime(LocalDateTime startTime) {
-		this.startTime = startTime;
+	public void setNewStatus(Status newStatus) {
+		this.newStatus = newStatus;
 	}
 
-	public RentalPoint getDstPoint() {
-		return dstPoint;
+	public LocalDateTime getEventTime() {
+		return eventTime;
 	}
 
-	public void setDstPoint(RentalPoint dstPoint) {
-		this.dstPoint = dstPoint;
+	public void setEventTime(LocalDateTime eventTime) {
+		this.eventTime = eventTime;
 	}
 
-	public LocalDateTime getEndTime() {
-		return endTime;
+	public String getRenter() {
+		return renter;
 	}
 
-	public void setEndTime(LocalDateTime endTime) {
-		this.endTime = endTime;
+	public void setRenter(String renter) {
+		this.renter = renter;
 	}
 
 	@Override
@@ -113,10 +116,10 @@ public class RentHistory {
 		return "RentHistory{" +
 				"id=" + id +
 				", car=" + car +
-				", srcPoint=" + srcPoint +
-//				", startTime=" + startTime +
-//				", dstPoint=" + dstPoint +
-//				", endTime=" + endTime +
+				", rentalPoint=" + rentalPoint +
+				", newStatus=" + newStatus +
+				", eventTime=" + eventTime +
+				", renter='" + renter + '\'' +
 				'}';
 	}
 }

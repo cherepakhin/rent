@@ -17,6 +17,9 @@ import javax.validation.constraints.NotNull;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Car {
 
+	// Арендатор когда автомобиль не арендован
+	public static final String NULL_RENTER = "-";
+
 	@ApiModelProperty(notes = "Номер автомобиля")
 	@Id
 	private String label;

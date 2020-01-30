@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 import ru.perm.v.rent.dto.CarDTO;
 import ru.perm.v.rent.model.Car;
 import ru.perm.v.rent.model.ModelCar;
+import ru.perm.v.rent.model.RentHistory;
 import ru.perm.v.rent.model.RentalPoint;
 import ru.perm.v.rent.model.Status;
 import ru.perm.v.rent.repository.CarRepository;
 import ru.perm.v.rent.repository.ModelCarRepository;
+import ru.perm.v.rent.repository.RentHistoryRepository;
 import ru.perm.v.rent.repository.RentalPointRepository;
 import ru.perm.v.rent.repository.StatusRepository;
 
@@ -29,6 +31,9 @@ public class CarService extends AService<Car, String> {
 
 	@Autowired
 	RentalPointRepository rentalPointRepository;
+
+	@Autowired
+	RentHistoryRepository rentHistoryRepository;
 
 	@Autowired
 	CarRepository repository;
@@ -57,12 +62,25 @@ public class CarService extends AService<Car, String> {
 	 * Взять машину в прокат
 	 *
 	 * @param label  - номер машины
-	 * @param rental - арендатор
+	 * @param renter - арендатор
 	 * @return - арендованная машина
 	 */
-	//TODO: Реализовать аренду
-	public Car take(String label, String rental) {
-		return repository.getOne(label);
+	public Car take(String label, String renter) {
+		// Смена статуса автомобиля
+		Car car = repository.getOne(label);
+		Status rentStatus = statusRepository.getOne(Status.RENT);
+		car.setRenter(renter);
+		car.setStatus(rentStatus);
+		Car changedCar = repository.save(car);
+
+		// Регистрация аренды
+		RentHistory record = new RentHistory();
+		record.setCar(changedCar);
+		record.setRenter(renter);
+		record.setNewStatus(rentStatus);
+		record.setRentalPoint(car.getRentalPoint());
+		rentHistoryRepository.save(record);
+		return changedCar;
 	}
 
 	/**
@@ -72,9 +90,26 @@ public class CarService extends AService<Car, String> {
 	 * @param nameRentalPoint - название пункта приема
 	 * @return - машина
 	 */
-	//TODO: Сдать машину
 	public Car returnCar(String label, String nameRentalPoint) {
-		return repository.getOne(label);
+		Status freeStatus = statusRepository.getOne(Status.FREE);
+		RentalPoint rentalPoint = rentalPointRepository
+				.getByName(nameRentalPoint);
+
+		Car car = repository.getOne(label);
+
+		// Регистрация сдачи автомобиля
+		RentHistory record = new RentHistory();
+		record.setCar(car);
+		record.setRenter(car.getRenter());
+		record.setNewStatus(freeStatus);
+		record.setRentalPoint(rentalPoint);
+		rentHistoryRepository.save(record);
+
+		// Смена статуса автомобиля
+		car.setRenter(Car.NULL_RENTER);
+		car.setStatus(freeStatus);
+		car.setRentalPoint(rentalPoint);
+		return repository.save(car);
 	}
 
 	/**

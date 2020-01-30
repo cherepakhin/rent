@@ -1,5 +1,6 @@
 package ru.perm.v.rent.controller;
 
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -69,21 +70,20 @@ public class CarCtrlTest {
 	}
 
 	@Test
-	public void getFreeForRent() {
+	public void getFreeForRent() throws Exception {
 		List<Car> cars = new ArrayList<>();
 		cars.add(new Car("0"));
 		cars.add(new Car("1"));
 		given(this.service.getFreeForRent(any()))
 				.willReturn(cars);
 
-//		this.mockMvc
-//				.perform(get("/car/free")
-//						.contentType(MEDIA_TYPE_JSON)
-//						.content(json)
-//				)
-//				.andExpect(MockMvcResultMatchers.status().isOk())
-//				.andDo(print())
-//				.andExpect(jsonPath("$.label").value(LABEL))
-//		;
+		this.mockMvc
+				.perform(get("/car/free")
+						.contentType(MEDIA_TYPE_JSON)
+				)
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andDo(print())
+				.andExpect(jsonPath("$", hasSize(2)))
+		;
 	}
 }

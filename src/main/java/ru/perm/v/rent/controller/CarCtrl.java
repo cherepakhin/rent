@@ -4,7 +4,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import java.util.List;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,7 +45,7 @@ public class CarCtrl {
 	 * Взять машину в прокат
 	 *
 	 * @param label  - номер машины
-	 * @param rental - арендатор
+	 * @param renter - арендатор
 	 * @return - арендованная машина
 	 */
 	@ApiOperation(value = "Взять машину в прокат", response = Car.class)
@@ -56,8 +55,8 @@ public class CarCtrl {
 			@RequestParam(name = "label") String label,
 
 			@ApiParam(value = "Пункт выдачи", required = true)
-			@RequestParam(name = "rental") String rental) {
-		return service.take(label, rental);
+			@RequestParam(name = "renter") String renter) {
+		return service.take(label, renter);
 	}
 
 	/**
@@ -81,8 +80,8 @@ public class CarCtrl {
 	/**
 	 * Получить свободные для аренды машины
 	 *
-	 * @param point - пункт выдачи (если пустая строка, то для всех
-	 * 	 *                        пунктов)
+	 * @param point - пункт выдачи (если пустая строка, то для всех *
+	 *              пунктов)
 	 * @return - список свободных машин
 	 */
 	@ApiOperation(value = "Получить свободные для аренды машины", response =
