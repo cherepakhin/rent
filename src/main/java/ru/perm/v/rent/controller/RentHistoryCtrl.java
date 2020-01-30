@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import ru.perm.v.rent.dto.AvgReportDTO;
 import ru.perm.v.rent.model.RentHistory;
 import ru.perm.v.rent.service.RentHistoryService;
 
@@ -19,7 +20,7 @@ import ru.perm.v.rent.service.RentHistoryService;
 public class RentHistoryCtrl extends ACtrl<RentHistory, Long> {
 
 	@Autowired
-	RentHistoryService service;
+	RentHistoryService rentHistoryService;
 
 	@ApiOperation(value = "Получение записей аренды", response =
 			List.class)
@@ -32,7 +33,15 @@ public class RentHistoryCtrl extends ACtrl<RentHistory, Long> {
 			@ApiParam(value = "Конец периода. Формат "
 					+ "\"yyyy-MM-dd HH:mm:ss\"\"", required = true)
 			@RequestParam LocalDateTime end) {
-		return service.findInPeriod(start, end);
+		return rentHistoryService.findInPeriod(start, end);
 	}
+
+	@ApiOperation(value = "Отчет со средними цифрами аренды", response =
+			List.class)
+	@GetMapping("/avgreport")
+	public List<AvgReportDTO> getAvgReport() {
+		return rentHistoryService.getAvgReport();
+	}
+
 
 }

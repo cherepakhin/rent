@@ -31,4 +31,5 @@ public interface RentHistoryRepository extends
 	)
 	List<RentHistory> findInPeriod(LocalDateTime startTime,
 			LocalDateTime endTime);
+
 }

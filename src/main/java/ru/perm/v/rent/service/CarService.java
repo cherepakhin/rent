@@ -36,7 +36,7 @@ public class CarService extends AService<Car, String> {
 	RentHistoryRepository rentHistoryRepository;
 
 	@Autowired
-	CarRepository repository;
+	CarRepository carRepository;
 
 	public Car saveByDTO(CarDTO dto) {
 		Status status =
@@ -122,8 +122,8 @@ public class CarService extends AService<Car, String> {
 	public List<Car> getFreeForRent(String nameRentalPoint) {
 		Status freeStatus = statusRepository.getOne(Status.FREE);
 		return nameRentalPoint.isEmpty() ?
-				repository.findByStatusName(freeStatus.getName()) :
-				repository.findByStatusNameAndRentalPointName(
+				carRepository.findByStatusName(freeStatus.getName()) :
+				carRepository.findByStatusNameAndRentalPointName(
 						freeStatus.getName(), nameRentalPoint);
 	}
 }

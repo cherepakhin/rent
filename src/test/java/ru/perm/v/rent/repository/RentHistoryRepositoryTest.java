@@ -7,6 +7,8 @@ import java.util.List;
 import javax.transaction.Transactional;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -20,6 +22,8 @@ import ru.perm.v.rent.service.CarService;
 @Transactional
 public class RentHistoryRepositoryTest {
 
+	private final static Logger LOG =
+			LoggerFactory.getLogger(RentHistoryRepositoryTest.class);
 	private final static String LABEL = "333";
 	private final static String RENTER = "RENTER";
 	private final static String RENTAL_POINT = "Пункт-1";
@@ -64,5 +68,4 @@ public class RentHistoryRepositoryTest {
 				endTime.plusSeconds(1));
 		assertEquals(0, records.size());
 	}
-
 }
