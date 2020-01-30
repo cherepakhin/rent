@@ -27,5 +27,5 @@
 - [http://localhost:8080/api/modelcar](http://localhost:8080/api/modelcar) - сервис работы с моделями машин 
 - [http://localhost:8080/api/status](http://localhost:8080/api/status) - сервис работы со статусами машин ("Свободна","Арендована") 
 - [http://localhost:8080/api/rentalpoint](http://localhost:8080/api/rentalpoint) - сервис работы с пунктами проката
-- [http://localhost:8080/api/rentalhistory](http://localhost:8080/api/rentalhistory) - отчеты об аренде 
+- [http://localhost:8080/api/renthistory](http://localhost:8080/api/renthistory) - отчеты об аренде 
 

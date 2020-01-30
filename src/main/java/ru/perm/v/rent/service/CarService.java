@@ -1,5 +1,7 @@
 package ru.perm.v.rent.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +49,37 @@ public class CarService extends AService<Car, String> {
 		car.setStatus(status);
 		car.setRentalPoint(rentalPoint);
 		return repository.save(car);
+	}
+
+	/**
+	 * Взять машину в прокат
+	 * @param label - номер машины
+	 * @param rental - арендатор
+	 * @return - арендованная машина
+	 */
+	//TODO: Реализовать аренду
+	public Car take(String label, String rental) {
+		return repository.getOne(label);
+	}
+
+	/**
+	 * Сдать машину
+	 * @param label - номер машины
+	 * @param nameRentalPoint - название пункта приема
+	 * @return - машина
+	 */
+	//TODO: Сдать машину
+	public Car returnCar(String label, String nameRentalPoint) {
+		return repository.getOne(label);
+	}
+
+	/**
+	 * Получить свободные для аренды машины
+	 * @param nameRentalPoint - пункт выдачи
+	 * @return - список свободных машин
+	 */
+	//TODO: Получить свободные для аренды машины
+	public List<Car> getFreeForRent(String nameRentalPoint) {
+		return new ArrayList<Car>();
 	}
 }

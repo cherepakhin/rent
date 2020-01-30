@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.perm.v.rent.dto.SimpleDTO;
 import ru.perm.v.rent.model.ModelCar;
 
+//TODO: Добавить Swagger
 @RestController
 @RequestMapping("/modelcar")
 public class ModelCarCtrl extends ACtrl<ModelCar, Long> {

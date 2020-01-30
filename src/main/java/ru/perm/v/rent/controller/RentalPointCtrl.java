@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.perm.v.rent.dto.SimpleDTO;
 import ru.perm.v.rent.model.RentalPoint;
 
+//TODO: Добавить Swagger
 @RestController
 @RequestMapping("/rentalpoint")
 public class RentalPointCtrl extends ACtrl<RentalPoint, Long> {
@@ -16,4 +17,5 @@ public class RentalPointCtrl extends ACtrl<RentalPoint, Long> {
 		return service.getRepository()
 				.save(new RentalPoint(dto.getName()));
 	}
+
 }

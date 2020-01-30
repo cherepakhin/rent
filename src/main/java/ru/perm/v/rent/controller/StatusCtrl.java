@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.perm.v.rent.dto.SimpleDTO;
 import ru.perm.v.rent.model.Status;
 
+//TODO: Добавить Swagger
 @RestController
 @RequestMapping("/status")
 public class StatusCtrl extends ACtrl<Status, Long> {
