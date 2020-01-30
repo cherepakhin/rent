@@ -32,8 +32,8 @@
 
 #### Инструменты разработчика
 
-- Реализован интерфейс Swagger по адресу (http://localhost:8080/api/swagger-ui.html)[http://localhost:8080/api/swagger-ui.html] 
-- Реализован доступ к СУБД через интерфейс  (http://localhost:8080/api/h2)[http://localhost:8080/api/h2]
+- Реализован интерфейс Swagger по адресу [http://localhost:8080/api/swagger-ui.html](http://localhost:8080/api/swagger-ui.html) 
+- Реализован доступ к СУБД через интерфейс  [http://localhost:8080/api/h2](http://localhost:8080/api/h2)
 
 #### Запуск
 
@@ -42,3 +42,7 @@ git clone https://github.com/cherepakhin/rent
 cd rent
 mvn spring-boot:run 
 ````
+#### Демо
+
+Демо проект развернут по адресу [http://v.perm.ru:8080/rent/....](http://v.perm.ru:8080/rent)
+Т.е. /api заменить на /rent, ну и адрес не localhost :)

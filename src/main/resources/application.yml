@@ -6,7 +6,7 @@ spring:
       path: /h2
     #  spring.hibernate.hbm2ddl.auto=create-drop
   dataSource:
-    url: jdbc:h2:mem:testdb
+    url: jdbc:h2:mem:rentdb
     driverClassName: org.h2.Driver
     username: sa
     password:
@@ -21,6 +21,8 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  jmx:
+    default-domain: rent
 
 server:
   servlet:

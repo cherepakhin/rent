@@ -14,6 +14,8 @@
 	<name>rent</name>
 	<description>Тестовое задание "Аренда автомобилей"</description>
 
+	<packaging>war</packaging>
+
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -81,5 +83,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
