@@ -40,7 +40,7 @@ public class CarService extends AService<Car, String> {
 
 	public Car saveByDTO(CarDTO dto) {
 		Status status =
-				(dto.getStatus().isEmpty() || dto.getStatus().isBlank()) ?
+				dto.getStatus().isEmpty() ?
 						statusRepository
 								.getOne(Status.FREE) :
 						statusRepository.getByName(dto.getStatus());
