@@ -46,3 +46,5 @@ mvn spring-boot:run
 
 Демо проект развернут по адресу [http://v.perm.ru:8080/rent/....](http://v.perm.ru:8080/rent)
 Т.е. /api заменить на /rent, ну и адрес не localhost :)
+
+Пример для Swagger: [http://v.perm.ru:8080/rent/swagger-ui.html](http://v.perm.ru:8080/rent/swagger-ui.html)
