@@ -37,7 +37,6 @@ public class CarServiceTest {
 	}
 
 	@Test
-	@Sql("classpath:car.sql")
 	public void saveExistByDTO() {
 		final String LABEL = "111";
 		final String MODEL = "Toyota";

@@ -22,39 +22,36 @@ public class CarRepositoryTest {
 
 	private final static String LABEL = "111";
 	private final static String STATUS_NAME = "Свободен";
+
 	@Autowired
 	CarRepository repository;
 
 	@Test
-	@Sql("classpath:car.sql")
 	public void getOne() {
 		Car car = repository.getOne(LABEL);
 		assertEquals(LABEL, car.getLabel());
 	}
 
 	@Test
-	@Sql("classpath:car.sql")
 	public void findAll() {
 		List<Car> cars = repository.findAll();
 		assertEquals(3, cars.size());
 	}
 
-  @Test
-  @Sql("classpath:car.sql")
-  public void findByStatusName() {
-	  List<Car> cars = repository.findByStatusName(STATUS_NAME);
-	  assertEquals(2, cars.size());
-	  assertEquals(Status.FREE, cars.get(0).getStatus().getId());
-	  assertEquals(STATUS_NAME, cars.get(0).getStatus().getName());
-  }
+	@Test
+	public void findByStatusName() {
+		List<Car> cars = repository.findByStatusName(STATUS_NAME);
+		assertEquals(2, cars.size());
+		assertEquals(Status.FREE, cars.get(0).getStatus().getId());
+		assertEquals(STATUS_NAME, cars.get(0).getStatus().getName());
+	}
 
 	@Test
-	@Sql("classpath:car.sql")
 	public void findByStatusNameAndRentalPointName() {
-		final String RENTAL_POINT_NAME="-";
-		List<Car> cars=
+		final String RENTAL_POINT_NAME = "-";
+		List<Car> cars =
 				repository.findByStatusNameAndRentalPointName(STATUS_NAME,
-				RENTAL_POINT_NAME);
+						RENTAL_POINT_NAME);
 		assertEquals(1, cars.size());
 		assertEquals(Status.FREE, cars.get(0).getStatus().getId());
 		assertEquals(RENTAL_POINT_NAME, cars.get(0).getRentalPoint().getName());
