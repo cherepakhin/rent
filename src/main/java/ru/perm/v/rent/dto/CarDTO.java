@@ -1,23 +1,28 @@
 package ru.perm.v.rent.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * DTO для ввода машины
  */
-//@JsonIgnoreProperties(ignoreUnknown = true)
+@ApiModel(description = "Описание автомобиля.")
 public class CarDTO {
 
-	// Номер машины
+	@ApiModelProperty(notes = "Номер автомобиля")
 	@JsonProperty(required = true)
 	String label;
-	// Марка
+
+	@ApiModelProperty(notes = "Марка")
 	@JsonProperty(required = true)
 	String model;
-	// Пункт выдачи
+
+	@ApiModelProperty(notes = "Пункт выдачи")
 	@JsonProperty(required = true)
 	String rentalPoint;
-	// Статус
+
+	@ApiModelProperty(notes = "Статус")
 	@JsonProperty(required = false)
 	String status = "";
 

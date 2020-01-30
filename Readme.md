@@ -27,5 +27,17 @@
 - [http://localhost:8080/api/modelcar](http://localhost:8080/api/modelcar) - сервис работы с моделями машин 
 - [http://localhost:8080/api/status](http://localhost:8080/api/status) - сервис работы со статусами машин ("Свободна","Арендована") 
 - [http://localhost:8080/api/rentalpoint](http://localhost:8080/api/rentalpoint) - сервис работы с пунктами проката
-- [http://localhost:8080/api/renthistory](http://localhost:8080/api/renthistory) - отчеты об аренде 
+- [http://localhost:8080/api/renthistory](http://localhost:8080/api/renthistory) - отчеты об аренде
 
+#### Инструменты разработчика
+
+- Реализован интерфейс Swagger по адресу (http://localhost:8080/api/swagger-ui.html)[http://localhost:8080/api/swagger-ui.html] 
+- Реализован доступ к СУБД через интерфейс  (http://localhost:8080/api/h2)[http://localhost:8080/api/h2]
+
+#### Запуск
+
+````shell script
+git clone https://github.com/cherepakhin/rent
+cd rent
+mvn spring-boot:run 
+````

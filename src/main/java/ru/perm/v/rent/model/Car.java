@@ -1,6 +1,8 @@
 package ru.perm.v.rent.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -9,29 +11,30 @@ import javax.validation.constraints.NotNull;
 /**
  * Арендуемый автомобиль
  */
+@ApiModel(description = "Описание автомобиля.")
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Car {
 
-	//Номер автомобиля
+	@ApiModelProperty(notes = "Номер автомобиля")
 	@Id
 	private String label;
 
-	// Арендатор
+	@ApiModelProperty(notes = "Арендатор")
 	// TODO: Может быть выделить отдельную таблицу
 	private String renter = "";
 
-	// Марка
+	@ApiModelProperty(notes = "Марка")
 	@NotNull
 	@ManyToOne
 	private ModelCar model;
 
-	// Пункт выдачи, где можно арендовать или последнее место выдачи
+	@ApiModelProperty(notes = "Пункт выдачи, где можно арендовать или последнее место выдачи")
 	@NotNull
 	@ManyToOne
 	private RentalPoint rentalPoint;
 
-	// Статус
+	@ApiModelProperty(notes = "Статус")
 	@NotNull
 	@ManyToOne
 	private Status status;

@@ -1,5 +1,7 @@
 package ru.perm.v.rent.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,12 +10,16 @@ import javax.persistence.Id;
 /**
  * Марка автомобиля
  */
+@ApiModel(description = "Марка автомобиля.")
 @Entity
 public class ModelCar {
 
+	@ApiModelProperty(notes = "Идентификатор")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@ApiModelProperty(notes = "Марка")
 	private String name;
 
 	public ModelCar() {

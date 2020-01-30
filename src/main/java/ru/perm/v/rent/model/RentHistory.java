@@ -1,5 +1,7 @@
 package ru.perm.v.rent.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,31 +12,33 @@ import javax.persistence.ManyToOne;
 /**
  * Сведения об аренде
  */
+@ApiModel(description = "Сведения об аренде")
 @Entity
 public class RentHistory {
 
+	@ApiModelProperty(notes = "Идентификатор")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	// Арендованный автомобиль
+	@ApiModelProperty(notes = "Арендованный автомобиль")
 	@ManyToOne
 	private Car car;
 
-	// взят из пункта
+	@ApiModelProperty(notes = "Взят из пункта")
 	@ManyToOne
 	private RentalPoint srcPoint;
 
-	// Время выдачи машины
+	@ApiModelProperty(notes = "Время выдачи машины")
 	private LocalDateTime startTime = LocalDateTime.now();
 
-	// Принят в пукте
 	// Может быть null. Означает что машина в аренде
+	@ApiModelProperty(notes = "Принят в пукте")
 	@ManyToOne
 	private RentalPoint dstPoint;
 
-	// Время принятия машины от арендатора
 	// Может быть null. Означает что машина в аренде
+	@ApiModelProperty(notes = "Время принятия машины от арендатора")
 	private LocalDateTime endTime;
 
 	public Long getId() {
