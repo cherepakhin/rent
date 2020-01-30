@@ -121,7 +121,7 @@ public class CarService extends AService<Car, String> {
 	 */
 	public List<Car> getFreeForRent(String nameRentalPoint) {
 		Status freeStatus = statusRepository.getOne(Status.FREE);
-		return nameRentalPoint.isBlank() ?
+		return nameRentalPoint.isEmpty() ?
 				repository.findByStatusName(freeStatus.getName()) :
 				repository.findByStatusNameAndRentalPointName(
 						freeStatus.getName(), nameRentalPoint);
