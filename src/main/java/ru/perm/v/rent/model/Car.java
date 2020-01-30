@@ -30,17 +30,14 @@ public class Car {
 	private String renter = "";
 
 	@ApiModelProperty(notes = "Марка")
-	@NotNull
 	@ManyToOne
 	private ModelCar model;
 
 	@ApiModelProperty(notes = "Пункт выдачи, где можно арендовать или последнее место выдачи")
-	@NotNull
 	@ManyToOne
 	private RentalPoint rentalPoint;
 
 	@ApiModelProperty(notes = "Статус")
-	@NotNull
 	@ManyToOne
 	private Status status;
 
