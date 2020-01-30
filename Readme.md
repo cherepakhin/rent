@@ -5,12 +5,13 @@
 Сделано на Java, Spring Boot, Hibernate
 #### Модель
 
-- [Арендуемый автомобиль](src/main/java/ru/perm/v/rent/model/Car.java)
-- [Марка автомобиля](src/main/java/ru/perm/v/rent/model/ModelCar.java)
-- [Пункт проката](src/main/java/ru/perm/v/rent/model/RentalPoint.java)
-- [Текущий статус автомобиля](src/main/java/ru/perm/v/rent/model/Status.java)
-- [Сведения об аренде](src/main/java/ru/perm/v/rent/model/RentHistory.java)
+- [Арендуемый автомобиль (Car)](src/main/java/ru/perm/v/rent/model/Car.java)
+- [Марка автомобиля (ModelCar)](src/main/java/ru/perm/v/rent/model/ModelCar.java)
+- [Пункт проката (RentalPoint)](src/main/java/ru/perm/v/rent/model/RentalPoint.java)
+- [Текущий статус автомобиля (Status)](src/main/java/ru/perm/v/rent/model/Status.java)
+- [Сведения об аренде (RentHistory)](src/main/java/ru/perm/v/rent/model/RentHistory.java)
 
+![model](doc/model.png "UML Модель")
 #### Сервисы
 
 Все сервисы реализуют CRUD интерфейс:
@@ -42,6 +43,9 @@ git clone https://github.com/cherepakhin/rent
 cd rent
 mvn spring-boot:run 
 ````
+
+Сама база данных будет создана в памяти  при запуске. База данных [H2](https://www.h2database.com/html/main.html)
+ 
 #### Демо
 
 Демо проект развернут по адресу [http://v.perm.ru:8080/rent/....](http://v.perm.ru:8080/rent)
