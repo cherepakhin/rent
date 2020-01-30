@@ -2,12 +2,15 @@ package ru.perm.v.rent.controller;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,5 +66,24 @@ public class CarCtrlTest {
 				.andExpect(jsonPath("$.label").value(LABEL))
 		;
 
+	}
+
+	@Test
+	public void getFreeForRent() {
+		List<Car> cars = new ArrayList<>();
+		cars.add(new Car("0"));
+		cars.add(new Car("1"));
+		given(this.service.getFreeForRent(any()))
+				.willReturn(cars);
+
+//		this.mockMvc
+//				.perform(get("/car/free")
+//						.contentType(MEDIA_TYPE_JSON)
+//						.content(json)
+//				)
+//				.andExpect(MockMvcResultMatchers.status().isOk())
+//				.andDo(print())
+//				.andExpect(jsonPath("$.label").value(LABEL))
+//		;
 	}
 }

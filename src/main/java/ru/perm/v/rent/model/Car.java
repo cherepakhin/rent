@@ -3,6 +3,7 @@ package ru.perm.v.rent.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -21,6 +22,7 @@ public class Car {
 	private String label;
 
 	@ApiModelProperty(notes = "Арендатор")
+	@Column(columnDefinition = "varchar(255) default '-'")
 	// TODO: Может быть выделить отдельную таблицу
 	private String renter = "";
 
@@ -38,6 +40,13 @@ public class Car {
 	@NotNull
 	@ManyToOne
 	private Status status;
+
+	public Car() {
+	}
+
+	public Car(String label) {
+		this.label = label;
+	}
 
 	public String getLabel() {
 		return label;
