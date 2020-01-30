@@ -1,6 +1,5 @@
 package ru.perm.v.rent.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +10,7 @@ import ru.perm.v.rent.model.Car;
 import ru.perm.v.rent.model.ModelCar;
 import ru.perm.v.rent.model.RentalPoint;
 import ru.perm.v.rent.model.Status;
-import ru.perm.v.rent.model.StatusConstants;
+import ru.perm.v.rent.repository.CarRepository;
 import ru.perm.v.rent.repository.ModelCarRepository;
 import ru.perm.v.rent.repository.RentalPointRepository;
 import ru.perm.v.rent.repository.StatusRepository;
@@ -31,11 +30,14 @@ public class CarService extends AService<Car, String> {
 	@Autowired
 	RentalPointRepository rentalPointRepository;
 
+	@Autowired
+	CarRepository repository;
+
 	public Car saveByDTO(CarDTO dto) {
 		Status status =
 				(dto.getStatus().isEmpty() || dto.getStatus().isBlank()) ?
 						statusRepository
-								.getOne(StatusConstants.FREE) :
+								.getOne(Status.FREE) :
 						statusRepository.getByName(dto.getStatus());
 		RentalPoint rentalPoint = rentalPointRepository
 				.getByName(dto.getRentalPoint());
@@ -53,7 +55,8 @@ public class CarService extends AService<Car, String> {
 
 	/**
 	 * Взять машину в прокат
-	 * @param label - номер машины
+	 *
+	 * @param label  - номер машины
 	 * @param rental - арендатор
 	 * @return - арендованная машина
 	 */
@@ -64,7 +67,8 @@ public class CarService extends AService<Car, String> {
 
 	/**
 	 * Сдать машину
-	 * @param label - номер машины
+	 *
+	 * @param label           - номер машины
 	 * @param nameRentalPoint - название пункта приема
 	 * @return - машина
 	 */
@@ -75,11 +79,16 @@ public class CarService extends AService<Car, String> {
 
 	/**
 	 * Получить свободные для аренды машины
-	 * @param nameRentalPoint - пункт выдачи
+	 *
+	 * @param nameRentalPoint - пункт выдачи (если пустая строка, то для всех
+	 *                        пунктов)
 	 * @return - список свободных машин
 	 */
-	//TODO: Получить свободные для аренды машины
 	public List<Car> getFreeForRent(String nameRentalPoint) {
-		return new ArrayList<Car>();
+		Status freeStatus = statusRepository.getOne(Status.FREE);
+		return nameRentalPoint.isBlank() ?
+				repository.findByStatusName(freeStatus.getName()) :
+				repository.findByStatusNameAndRentalPointName(
+						freeStatus.getName(), nameRentalPoint);
 	}
 }

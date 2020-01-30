@@ -12,6 +12,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.perm.v.rent.model.Car;
+import ru.perm.v.rent.model.Status;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -20,6 +21,7 @@ import ru.perm.v.rent.model.Car;
 public class CarRepositoryTest {
 
 	private final static String LABEL = "111";
+	private final static String STATUS_NAME = "Свободен";
 	@Autowired
 	CarRepository repository;
 
@@ -34,6 +36,27 @@ public class CarRepositoryTest {
 	@Sql("classpath:car.sql")
 	public void findAll() {
 		List<Car> cars = repository.findAll();
-		assertEquals(2, cars.size());
+		assertEquals(3, cars.size());
+	}
+
+  @Test
+  @Sql("classpath:car.sql")
+  public void findByStatusName() {
+	  List<Car> cars = repository.findByStatusName(STATUS_NAME);
+	  assertEquals(2, cars.size());
+	  assertEquals(Status.FREE, cars.get(0).getStatus().getId());
+	  assertEquals(STATUS_NAME, cars.get(0).getStatus().getName());
+  }
+
+	@Test
+	@Sql("classpath:car.sql")
+	public void findByStatusNameAndRentalPointName() {
+		final String RENTAL_POINT_NAME="-";
+		List<Car> cars=
+				repository.findByStatusNameAndRentalPointName(STATUS_NAME,
+				RENTAL_POINT_NAME);
+		assertEquals(1, cars.size());
+		assertEquals(Status.FREE, cars.get(0).getStatus().getId());
+		assertEquals(RENTAL_POINT_NAME, cars.get(0).getRentalPoint().getName());
 	}
 }

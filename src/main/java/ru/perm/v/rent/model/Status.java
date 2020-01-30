@@ -16,6 +16,9 @@ import javax.persistence.Id;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Status {
 
+	public static final Long FREE = 0L; // Можно арендовать
+	public static final Long RENT = 1L; // Арендована
+
 	@ApiModelProperty(notes = "Идентификатор")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

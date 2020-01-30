@@ -79,7 +79,8 @@ public class CarCtrl {
 	/**
 	 * Получить свободные для аренды машины
 	 *
-	 * @param nameRentalPoint - пункт выдачи
+	 * @param nameRentalPoint - пункт выдачи (если пустая строка, то для всех
+	 * 	 *                        пунктов)
 	 * @return - список свободных машин
 	 */
 	@ApiOperation(value = "Получить свободные для аренды машины", response =

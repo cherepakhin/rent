@@ -17,7 +17,7 @@ public class RentalPointRepositoryTest {
 
 	// Взято из import.sql
 	private final static String RENTAL_POINT_NAME = "Пункт-1";
-	private final static Long RENTAL_POINT_ID = 1L;
+	private final static Long RENTAL_POINT_ID = 2L;
 
 	@Autowired
 	RentalPointRepository repository;

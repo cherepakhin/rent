@@ -11,7 +11,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.perm.v.rent.dto.CarDTO;
 import ru.perm.v.rent.model.Car;
-import ru.perm.v.rent.model.StatusConstants;
+import ru.perm.v.rent.model.Status;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -33,7 +33,7 @@ public class CarServiceTest {
 		assertEquals(MODEL, car.getModel().getName());
 		assertEquals(LABEL, car.getLabel());
 		assertEquals(RENTAL_POINT, car.getRentalPoint().getName());
-		assertEquals(StatusConstants.FREE, car.getStatus().getId());
+		assertEquals(Status.FREE, car.getStatus().getId());
 	}
 
 	@Test
@@ -49,6 +49,6 @@ public class CarServiceTest {
 		assertEquals(MODEL, car.getModel().getName());
 		assertEquals(LABEL, car.getLabel());
 		assertEquals(RENTAL_POINT, car.getRentalPoint().getName());
-		assertEquals(StatusConstants.FREE, car.getStatus().getId());
+		assertEquals(Status.FREE, car.getStatus().getId());
 	}
 }

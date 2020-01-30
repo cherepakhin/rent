@@ -1,7 +1,8 @@
-## Тестовое задание "Аренда автомобилей"
+## Тестовое задание "Аренда автомобилей" (backend)
 
 [Само задание](doc/task_description.pdf)
 
+Сделано на Java, Spring Boot, Hibernate
 #### Модель
 
 - [Арендуемый автомобиль](src/main/java/ru/perm/v/rent/model/Car.java)

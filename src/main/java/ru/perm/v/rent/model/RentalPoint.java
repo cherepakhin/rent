@@ -13,7 +13,9 @@ import javax.persistence.Id;
 @ApiModel(description = "Пункт проката")
 @Entity
 public class RentalPoint {
-
+	// Пункт по умолчанию, если неизвестен
+	// Нужен, например, чтобы указать что автомобиль в аренде
+	public static final Long NULL_RENTAL_POINT = 0L;
 	@ApiModelProperty(notes = "Идентификатор")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

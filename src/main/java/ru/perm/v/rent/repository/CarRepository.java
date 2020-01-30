@@ -35,6 +35,43 @@ public interface CarRepository extends JpaRepository<Car, String> {
 			"from Car c " +
 			"left join fetch c.model " +
 			"left join fetch c.rentalPoint " +
-			"left join fetch c.status ")
+			"left join fetch c.status " +
+			"order by c.label, c.rentalPoint.name, c.status.name"
+	)
 	List<Car> findAll();
+
+	/**
+	 * Получение машин по статусу и пункту выдачи
+	 *
+	 * @param nameStatus - статус
+	 * @return - список машин
+	 */
+	@Query("select distinct c " +
+			"from Car c " +
+			"left join fetch c.model " +
+			"left join fetch c.rentalPoint " +
+			"left join fetch c.status " +
+			"where c.status.name=:nameStatus " +
+			"order by c.rentalPoint.name, c.label"
+	)
+	List<Car> findByStatusName(String nameStatus);
+
+	/**
+	 * Получение машин по статусу и пункту выдачи
+	 *
+	 * @param nameStatus      - статус
+	 * @param nameRentalPoint - пункту выдачи
+	 * @return - список машин
+	 */
+	@Query("select distinct c " +
+			"from Car c " +
+			"left join fetch c.model " +
+			"left join fetch c.rentalPoint " +
+			"left join fetch c.status " +
+			"where c.status.name=:nameStatus and " +
+			"c.rentalPoint.name=:nameRentalPoint " +
+			"order by c.rentalPoint.name, c.label"
+	)
+	List<Car> findByStatusNameAndRentalPointName(String nameStatus,
+			String nameRentalPoint);
 }
