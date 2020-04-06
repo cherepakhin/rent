@@ -1,6 +1,7 @@
 package ru.perm.v.rent.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.LocalDateTime;
@@ -16,6 +17,7 @@ import javax.persistence.ManyToOne;
  */
 @ApiModel(description = "Сведения об аренде")
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class RentHistory {
 
 	@ApiModelProperty(notes = "Идентификатор")

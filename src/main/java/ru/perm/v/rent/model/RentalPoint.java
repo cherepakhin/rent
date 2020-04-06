@@ -1,5 +1,6 @@
 package ru.perm.v.rent.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
  */
 @ApiModel(description = "Пункт проката")
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class RentalPoint {
 
 	// Пункт по умолчанию, если неизвестен
