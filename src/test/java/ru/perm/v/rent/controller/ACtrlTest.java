@@ -75,7 +75,6 @@ public class ACtrlTest {
 	public void create() throws Exception {
 		SimpleDTO dto = new SimpleDTO(NAME);
 		String requestJson = objectMapper.writeValueAsString(dto);
-
 		given(this.statusService.getRepository().save(new Status(NAME)))
 				.willReturn(STATUS_TEST);
 

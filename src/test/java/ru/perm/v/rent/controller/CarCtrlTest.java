@@ -53,7 +53,7 @@ public class CarCtrlTest {
 				+ "}", LABEL);
 
 		Car car = new Car();
-		car.setLabel(LABEL);
+		car.setLabel("a241cc59");
 		given(this.service.saveByDTO(any()))
 				.willReturn(car);
 
