@@ -25,8 +25,8 @@ pipeline {
                     // Деплой в Tomcat
 //                    sh "cp target/demo-0.0.1-SNAPSHOT.war /home/vasi/java/tomcat8/webapps/demo.war"
                     sh "curl -T \"target/rent-0.0.1-SNAPSHOT.war\" " +
-                            "\"http://deployer:pass@v.perm" +
-                            ".ru:8080/manager/text/deploy?path=/rent&update=true\""
+                            "\"http://admin:pass@v.perm" +
+                            ".ru:8081/manager/text/deploy?path=/rent&update=true\""
                 }
             }
         }
