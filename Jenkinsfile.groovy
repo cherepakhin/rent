@@ -18,9 +18,9 @@ pipeline {
                     archiveArtifacts 'target/*.war'
 
                     // Отправка почты
-                    mail to: 'vasi.che@gmail.com',
-                            subject: "Успешная сборка: ${currentBuild.fullDisplayName}",
-                            body: "Ссылка на результат ${env.BUILD_URL}"
+                    //mail to: 'vasi.che@gmail.com',
+                    //        subject: "Успешная сборка: ${currentBuild.fullDisplayName}",
+                    //        body: "Ссылка на результат ${env.BUILD_URL}"
 
                     // Деплой в Tomcat
 //                    sh "cp target/demo-0.0.1-SNAPSHOT.war /home/vasi/java/tomcat8/webapps/demo.war"
